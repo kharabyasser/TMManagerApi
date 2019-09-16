@@ -15,9 +15,14 @@ namespace TMManagerApi.Controllers
 
         //GET:      api/satellites
         [HttpGet]
-        public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
+        //public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
+        //{
+        //    return _context.Satellites;
+        //}
+
+        public ActionResult<IEnumerable<string>> GetSatellites()
         {
-            return _context.Satellites;
+            return new string[] { "Hello" };
         }
 
         //GET:      api/satellites/n
