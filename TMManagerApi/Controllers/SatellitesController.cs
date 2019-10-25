@@ -17,25 +17,7 @@ namespace TMManagerApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
         {
-            if (_context.Satellites != null)
                 return _context.Satellites;
-            else 
-            {
-                new OnlineSatellite
-                {
-                    Account = "Fake",
-                    Truck = "Fake",
-                    Meter = "Fake",
-                    IsDualMeter = false,
-                    Printer = "Fake",
-                    TruckMasterVersion = "Fake",
-                    RemoteServiceVersion = "Fake",
-                    TeamViewerID = "Fake",
-                    TeamViewerVersion = "Fake",
-                    OS = "Fake",
-                    IsOnline = fasle
-                };
-            }
         }
 
         //GET:      api/satellites/n
