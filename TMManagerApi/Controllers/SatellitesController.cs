@@ -14,8 +14,9 @@ namespace TMManagerApi.Controllers
         public SatellitesController(SatelliteContext context) => _context = context;
 
         //GET:      api/satellites
+        //public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
         [HttpGet]
-        public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
+        public string GetSatellites()
         {
             //return _context.Satellites;
             return "Hello";
