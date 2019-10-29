@@ -30,9 +30,9 @@ namespace TMManagerApi.Controllers
             {
                 var satelliteItem = _context.Satellites.Find(id);
                 if (satelliteItem == null)
-                    //return NotFound();
-
-                return "OK";
+                    return NotFound().ToString();
+                else
+                    return "OK";
             }
             catch (Exception e)
             {
