@@ -22,14 +22,16 @@ namespace TMManagerApi.Controllers
 
         //GET:      api/satellites/n
         [HttpGet("{id}")]
-        public ActionResult<OnlineSatellite> GetSatelliteItem(int id)
+        //public ActionResult<OnlineSatellite> GetSatelliteItem(int id)
+        public string GetSatelliteItem(int id)
         {
-            var satelliteItem = _context.Satellites.Find(id);
+            //var satelliteItem = _context.Satellites.Find(id);
 
-            if (satelliteItem == null)
-                return NotFound();
+            //if (satelliteItem == null)
+            //    return NotFound();
 
-            return satelliteItem;
+            //return satelliteItem;
+            return "inside";
         }
 
         //POST:     api/satellites
