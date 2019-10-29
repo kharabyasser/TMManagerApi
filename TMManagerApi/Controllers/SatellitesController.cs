@@ -15,10 +15,11 @@ namespace TMManagerApi.Controllers
 
         //GET:      api/satellites
         [HttpGet]
-        public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
+        //public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
+        public string GetSatellites()
         {
-            //Trigger
-                return _context.Satellites;
+                //return _context.Satellites;
+                return "HELL-O";
         }
 
         //GET:      api/satellites/n
