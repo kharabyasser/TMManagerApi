@@ -34,7 +34,7 @@ namespace TMManagerApi.Controllers
 
         //GET:      api/satellites/n
         [HttpGet("{fingerprint}")]
-        public ActionResult<OnlineSatellite> GetSatelliteItem(int fingerprint)
+        public ActionResult<OnlineSatellite> GetSatelliteItem(string fingerprint)
         {
             try
             {
