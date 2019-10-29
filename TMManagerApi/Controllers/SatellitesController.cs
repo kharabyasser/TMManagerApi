@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMManagerApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace TMManagerApi.Controllers
 {
@@ -25,13 +26,19 @@ namespace TMManagerApi.Controllers
         //public ActionResult<OnlineSatellite> GetSatelliteItem(int id)
         public string GetSatelliteItem(int id)
         {
-            //var satelliteItem = _context.Satellites.Find(id);
+            try
+            {
+                var satelliteItem = _context.Satellites.Find(id);
+                if (satelliteItem == null)
+                    //return NotFound();
 
-            //if (satelliteItem == null)
-            //    return NotFound();
+                return "OK";
+            }
+            catch (Exception e)
+            {
+                return "NO " + e.Message;
 
-            //return satelliteItem;
-            return "inside";
+            }
         }
 
         //POST:     api/satellites
