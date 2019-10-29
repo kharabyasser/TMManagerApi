@@ -33,12 +33,12 @@ namespace TMManagerApi.Controllers
         }
 
         //GET:      api/satellites/n
-        [HttpGet("{id}")]
-        public ActionResult<OnlineSatellite> GetSatelliteItem(int id)
+        [HttpGet("{fingerprint}")]
+        public ActionResult<OnlineSatellite> GetSatelliteItem(int fingerprint)
         {
             try
             {
-                var satelliteItem = _context.Satellites.Find(id);
+                var satelliteItem = _context.Satellites.Find(fingerprint);
                 if (satelliteItem == null)
                     return NotFound();
                 else
@@ -58,16 +58,15 @@ namespace TMManagerApi.Controllers
             _context.Satellites.Add(satellite);
             _context.SaveChanges();
 
-            //return CreatedAtAction("GetSatelliteItem", new OnlineSatellite { Id = satellite.Id }, satellite);
-            return null;
+            return CreatedAtAction("GetSatelliteItem", new OnlineSatellite { Fingerprint = satellite.Fingerprint }, satellite);
         }
 
 
         //PUT:      api/satellites/n
-        [HttpPut("{id}")]
-        public ActionResult PutSatelliteItem(string id, OnlineSatellite satellite)
+        [HttpPut("{fingerprint}")]
+        public ActionResult PutSatelliteItem(string fingerPrint, OnlineSatellite satellite)
         {
-            //if (id != satellite.Id)
+            if (fingerPrint != satellite.Fingerprint)
                 return BadRequest();
 
             _context.Entry(satellite).State = EntityState.Modified;
@@ -77,10 +76,10 @@ namespace TMManagerApi.Controllers
         }
 
         //Delete:       api/satellites/n
-        [HttpDelete("{id}")]
-        public ActionResult<OnlineSatellite> DeleteSatellitesItem(int id)
+        [HttpDelete("{fingerprint}")]
+        public ActionResult<OnlineSatellite> DeleteSatellitesItem(int fingerPrint)
         {
-            var satelliteItem = _context.Satellites.Find(id);
+            var satelliteItem = _context.Satellites.Find(fingerPrint);
             if (satelliteItem == null)
                 return NotFound();
 
