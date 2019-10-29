@@ -58,15 +58,16 @@ namespace TMManagerApi.Controllers
             _context.Satellites.Add(satellite);
             _context.SaveChanges();
 
-            return CreatedAtAction("GetSatelliteItem", new OnlineSatellite { Id = satellite.Id }, satellite);
+            //return CreatedAtAction("GetSatelliteItem", new OnlineSatellite { Id = satellite.Id }, satellite);
+            return null;
         }
 
 
         //PUT:      api/satellites/n
         [HttpPut("{id}")]
-        public ActionResult PutSatelliteItem(int id, OnlineSatellite satellite)
+        public ActionResult PutSatelliteItem(string id, OnlineSatellite satellite)
         {
-            if (id != satellite.Id)
+            //if (id != satellite.Id)
                 return BadRequest();
 
             _context.Entry(satellite).State = EntityState.Modified;

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TMManagerApi.Models
 {
     public class OnlineSatellite
     {
-        public int Id { get; set; }
+        [Key]
+        public string Fingerprint { get; set; }
         public string Account { get; set; }
         public string Truck { get; set; }
         public string Meter { get; set; }

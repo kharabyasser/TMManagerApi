@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TMManagerApi.Models;
 
 namespace TMManagerApi.Migrations
 {
     [DbContext(typeof(SatelliteContext))]
-    partial class SatelliteContextModelSnapshot : ModelSnapshot
+    [Migration("20191029184927_addFingerPrint")]
+    partial class addFingerPrint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,8 +23,9 @@ namespace TMManagerApi.Migrations
 
             modelBuilder.Entity("TMManagerApi.Models.OnlineSatellite", b =>
                 {
-                    b.Property<string>("Fingerprint")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Account");
 
@@ -48,7 +51,9 @@ namespace TMManagerApi.Migrations
 
                     b.Property<string>("TruckMasterVersion");
 
-                    b.HasKey("Fingerprint");
+                    b.Property<string>("fingerpring");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Satellites");
                 });
