@@ -18,25 +18,35 @@ namespace TMManagerApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<OnlineSatellite>> GetSatellites()
         {
-            return _context.Satellites;
+            try
+            {
+                var satllites = _context.Satellites;
+                if (satllites == null)
+                    return NotFound();
+                else
+                    return satllites;
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
         }
 
         //GET:      api/satellites/n
         [HttpGet("{id}")]
-        //public ActionResult<OnlineSatellite> GetSatelliteItem(int id)
-        public string GetSatelliteItem(int id)
+        public ActionResult<OnlineSatellite> GetSatelliteItem(int id)
         {
             try
             {
                 var satelliteItem = _context.Satellites.Find(id);
                 if (satelliteItem == null)
-                    return NotFound().ToString();
+                    return NotFound();
                 else
-                    return "OK";
+                    return satelliteItem;
             }
             catch (Exception e)
             {
-                return "NO " + e.Message;
+                return NotFound();
 
             }
         }
