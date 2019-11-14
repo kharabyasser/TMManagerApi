@@ -77,7 +77,7 @@ namespace TMManagerApi.Controllers
 
         //Delete:       api/satellites/n
         [HttpDelete("{fingerprint}")]
-        public ActionResult<OnlineSatellite> DeleteSatellitesItem(int fingerPrint)
+        public ActionResult<OnlineSatellite> DeleteSatellitesItem(string fingerPrint)
         {
             var satelliteItem = _context.Satellites.Find(fingerPrint);
             if (satelliteItem == null)
