@@ -9,5 +9,8 @@ namespace TMManagerApi.Models
         }
 
         public DbSet<OnlineSatellite> Satellites { get; set; }
+        public DbSet<JobResponse> JobResponses { get; set; }
+        public DbSet<JobRequest> JobRequests { get; set; }
+
     }
 }

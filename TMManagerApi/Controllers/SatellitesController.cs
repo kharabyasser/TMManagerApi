@@ -26,7 +26,7 @@ namespace TMManagerApi.Controllers
                 else
                     return satllites;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return NotFound();
             }
@@ -44,7 +44,7 @@ namespace TMManagerApi.Controllers
                 else
                     return satelliteItem;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return NotFound();
 
