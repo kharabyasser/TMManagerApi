@@ -10,6 +10,7 @@ namespace TMManagerApi.Models
         public string DeviceId { get; set; }
         public int Status { get; set; }
         public DateTime RequestDateTime { get; set; }
+        public string JobType { get; set; }
         public string JobDetails { get; set; }
         public List<JobResponse> JobResponses { get; set; }
     }
