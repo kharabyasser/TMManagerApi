@@ -18,12 +18,20 @@ namespace TMManagerApi
         {
             services.AddDbContext<SatelliteContext>
                 (o => o.UseSqlServer(Configuration["Data:SatelliteApiConnection:ConnectionString"]));
-            services.AddMvcCore().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages();
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseMvc();
+            //app.UseMvc();
+            //app.UseRouting();
+            app.UseRouting()
+                .UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+            });
         }
     }
 }
