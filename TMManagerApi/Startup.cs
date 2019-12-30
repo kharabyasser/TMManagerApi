@@ -18,7 +18,7 @@ namespace TMManagerApi
         {
             services.AddDbContext<SatelliteContext>
                 (o => o.UseSqlServer(Configuration["Data:SatelliteApiConnection:ConnectionString"]));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvcCore().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
