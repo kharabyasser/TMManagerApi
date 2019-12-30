@@ -54,10 +54,17 @@ namespace TMManagerApi.Controllers
         [HttpPost]
         public ActionResult<JobRequest> PostJobRequestItem(JobRequest jobRequest)
         {
-            _context.JobRequests.Add(jobRequest);
-            _context.SaveChanges();
+            try
+            {
+                _context.JobRequests.Add(jobRequest);
+                _context.SaveChanges();
 
-            return CreatedAtAction("GetJobRequestItem", new JobRequest { Id = jobRequest.Id }, jobRequest);
+                return CreatedAtAction("GetJobRequestItem", new JobRequest { Id = jobRequest.Id }, jobRequest);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
 
         //PUT:      api/jobrequests/n
