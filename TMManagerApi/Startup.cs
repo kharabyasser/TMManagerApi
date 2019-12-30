@@ -25,7 +25,6 @@ namespace TMManagerApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //app.UseMvc();
-            //app.UseRouting();
             app.UseRouting()
                 .UseEndpoints(endpoints =>
             {
