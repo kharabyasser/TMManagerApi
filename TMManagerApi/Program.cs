@@ -9,8 +9,9 @@ namespace TMManagerApi
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args)
-                .ConfigureLogging((logging) =>
+                .ConfigureLogging((hostingContext, logging) =>
                 {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     logging.AddEventSourceLogger();
                 })
                 .Build()
