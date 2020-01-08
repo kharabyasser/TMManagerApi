@@ -107,7 +107,7 @@ namespace TMManagerApi.Controllers
                 httpClientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
                 var httpClient = new HttpClient(httpClientHandler);
 
-                var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
+                var channel = GrpcChannel.ForAddress("https://grpc.truckmasterlive.com:5001", new GrpcChannelOptions { HttpClient = httpClient });
                 var jobRequestStream = new JobRequestGrpc.JobRequestGrpcClient(channel);
 
                 var model = new JobRequestGrpcLookupModel
