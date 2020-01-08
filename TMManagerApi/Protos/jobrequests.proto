@@ -1,0 +1,26 @@
+﻿syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "TMGrpcServer";
+
+service JobRequestGrpc {
+	rpc GetJobRequestGrpc (JobRequestGrpcLookupModel) returns (JobRequestGrpcModel);
+	rpc OnNewJobRequestGrpc (JobRequestGrpcLookupModel) returns (EmptyMessageModel);
+	rpc OnJobRequestReceivedGrpc (MessageModel) returns (EmptyMessageModel);
+}
+
+message JobRequestGrpcLookupModel {
+	string deviceId = 1;
+	string jobType1 = 2;
+	string jobType2 = 3;
+}
+
+message JobRequestGrpcModel {
+	string response = 1;
+}
+
+message EmptyMessageModel {
+}
+
+message MessageModel {
+	int32 messageId = 1;
+}

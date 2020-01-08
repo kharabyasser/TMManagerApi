@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Grpc.Net.Client;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using TMGrpcServer;
 using TMManagerApi.Models;
 
 namespace TMManagerApi.Controllers
@@ -59,6 +62,8 @@ namespace TMManagerApi.Controllers
                 _context.JobRequests.Add(jobRequest);
                 _context.SaveChanges();
 
+                NotifyGrpc(jobRequest);
+
                 return CreatedAtAction("GetJobRequestItem", new JobRequest { Id = jobRequest.Id }, jobRequest);
             }
             catch (Exception)
@@ -92,6 +97,31 @@ namespace TMManagerApi.Controllers
             _context.SaveChanges();
 
             return jobRequestItem;
+        }
+
+        public async void NotifyGrpc(JobRequest jobRequest)
+        {
+            try
+            {
+                var httpClientHandler = new HttpClientHandler();
+                httpClientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                var httpClient = new HttpClient(httpClientHandler);
+
+                var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpClient = httpClient });
+                var jobRequestStream = new JobRequestGrpc.JobRequestGrpcClient(channel);
+
+                var model = new JobRequestGrpcLookupModel
+                {
+                    DeviceId = jobRequest.DeviceId,
+                    JobType1 = jobRequest.JobType
+                };
+
+                await jobRequestStream.OnNewJobRequestGrpcAsync(model);
+            }
+            catch (Exception)
+            {
+                //Log to Azure.     
+            }
         }
     }
 }
